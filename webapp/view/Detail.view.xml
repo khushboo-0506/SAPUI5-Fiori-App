@@ -1,0 +1,53 @@
+<mvc:View
+	controllerName="ui5.walkthrough.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:wt="ui5.walkthrough.control">
+
+	<Page
+		title="{i18n>detailPageTitle}"
+		showNavButton="true"
+		navButtonPress=".onNavBack"
+	>
+		<ObjectHeader
+			core:require="{
+                Date: 'sap/ui/model/type/Date',
+                Currency: 'sap/ui/model/type/Currency'
+            }"
+			responsive="true"
+			fullScreenOptimized="true"
+			number="{
+                parts: [
+                    'invoice>ExtendedPrice',
+                    'view>/currency'
+                ],
+                type: 'Currency',
+                formatOptions: {
+                    showMeasure: false
+                }
+            }"
+			numberUnit="{view>/currency}"
+			intro="{invoice>ShipperName}"
+			title="{invoice>ProductName}" />
+		
+		<VBox class="sapUiLargeMarginBegin sapUiLargeMarginTop">
+			<Text text="Customer Name: {invoice>CustomerName}" />
+			<Text
+			text="{
+				path: 'invoice>ShippedDate',
+				type: 'sap.ui.model.type.Date',
+				formatOptions: { pattern: 'dd MMM yyyy' }
+			}" />
+			<Text text="Shipper Name: {invoice>ShipperName}" />
+			<Text text="Quantity: {invoice>Quantity}" />
+			<Text text="Extended Price: {invoice>ExtendedPrice}" />
+			<Text class="sapUiMediumMarginTop" text="Sales Person: {invoice>Salesperson}" />
+		</VBox>
+		<wt:ProductRating
+			id="rating"
+			class="sapUiMediumMarginBegin"
+			change=".onRatingChange" />
+
+	</Page>
+</mvc:View>

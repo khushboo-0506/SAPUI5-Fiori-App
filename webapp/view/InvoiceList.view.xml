@@ -1,0 +1,117 @@
+<mvc:View
+	controllerName="ui5.walkthrough.controller.InvoiceList"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Table
+		id="invoiceList"
+		headerText="{i18n>invoiceListTitle}"
+		class="sapUiResponsiveMargin"
+		width="auto"
+		items="{
+            path : 'invoice>/Invoices',
+            sorter : {
+            path : 'City', 
+            group : true
+            }
+        }">
+		<headerToolbar>
+			<Toolbar>
+				<Title text="{i18n>invoiceListTitle}" />
+				<ToolbarSpacer />
+				<SearchField
+					width="50%"
+					search=".onFilterInvoices"
+				/>
+			</Toolbar>
+		</headerToolbar>
+		<!-- <items>
+            <ObjectListItem
+                core:require="{
+                    Currency: 'sap/ui/model/type/Currency'
+                }"
+                title="{invoice>Quantity} x {invoice>ProductName}"
+                number="{
+                    parts: [
+                        'invoice>ExtendedPrice',
+                        'view>/currency'
+                    ],
+                    type: 'Currency',
+                    formatOptions: {
+                        showMeasure: true
+                    }
+                }"
+                numberUnit="{view>/currency}"
+                numberState="{= ${invoice>ExtendedPrice} > 500 ? 'Error' : 'Success' }"
+                type="Navigation"
+                press=".onPress">
+                <firstStatus>
+                    <ObjectStatus
+                        core:require="{
+                            Formatter: 'ui5/walkthrough/model/formatter'
+                        }"
+                        text="{
+                            path: 'invoice>Status',
+                            formatter: 'Formatter.statusText.bind($controller)'
+                        }" 
+                        />
+                </firstStatus>
+            </ObjectListItem>
+        </items> -->
+		<columns>
+			<Column
+				hAlign="End"
+				minScreenWidth="Small"
+				demandPopin="true"
+				width="5em">
+				<Text text="{i18n>Quantity}" />
+			</Column>
+			<Column>
+				<Text text="{i18n>Name}" />
+			</Column>
+
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="{i18n>Supplier}" />
+			</Column>
+			<Column hAlign="End">
+				<Text text="{i18n>Price}" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem
+				type="Navigation"
+				press=".onPress">
+				<cells>
+					<ObjectNumber
+						number="{invoice>Quantity}"
+						emphasized="false" />
+					<ObjectIdentifier title="{invoice>ProductName}" />
+
+					<Text
+						core:require="{
+								Formatter: 'ui5/walkthrough/model/formatter'
+						}"
+						text="{invoice>ShipperName}" />
+					<ObjectNumber
+						core:require="{
+							Currency: 'sap/ui/model/type/Currency'
+						}"
+						number="{
+							parts: [
+								'invoice>ExtendedPrice',
+								'view>/currency'
+							],
+							type: 'Currency',
+							formatOptions: {
+								showMeasure: false
+							}
+						}"
+						unit="{view>/currency}"
+						state="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>
