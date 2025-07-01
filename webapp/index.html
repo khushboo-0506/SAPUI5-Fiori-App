@@ -2,20 +2,30 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>UI5 Walkthrough</title>
+	<title>Task 2</title>
 	<script
 		id="sap-ui-bootstrap"
 		src="https://sdk.openui5.org/resources/sap-ui-core.js"
-		data-sap-ui-theme="sap_horizon"
+		data-sap-ui-theme="sap_fiori_3" 
 		data-sap-ui-compat-version="edge"
 		data-sap-ui-async="true"
 		data-sap-ui-on-init="module:sap/ui/core/ComponentSupport"
 		data-sap-ui-resource-roots='{
 			"ui5.walkthrough": "./"
 		}'>
+		//sap_fiori_3 theme for a modern SAP Fiori design
+		// data-sap-ui-compat-version="edge" - Uses the latest UI5 rendering compatibility mode 
+        //data-sap-ui-async="true" -> Loads UI5 modules asynchronously — better performance
+		//"ui5.walkthrough": "./" ->looks in the current folder
+
 	</script>
 </head>
 <body class="sapUiBody" id="content">
-	<div data-sap-ui-component data-name="ui5.walkthrough" data-id="container" data-settings='{"id" : "walkthrough"}'></div>
+	<div
+	 data-sap-ui-component
+	 data-name="ui5.walkthrough" 
+	 data-id="container" 
+	 data-settings='{"id" : "walkthrough"}'>
+	</div>
 </body>
 </html>

@@ -2,7 +2,7 @@
     controllerName="ui5.walkthrough.controller.App"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true">
+    displayBlock="true"><!-- Ensures that the entire content is rendered directly into the HTML body-->
     <Shell>
         <App
             class="myAppDemoWT"

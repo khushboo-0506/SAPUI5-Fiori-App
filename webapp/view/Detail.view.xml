@@ -5,11 +5,16 @@
 	xmlns:core="sap.ui.core"
 	xmlns:wt="ui5.walkthrough.control">
 
+	<!-- showNavButton="true": Shows a back button on the top-left-->
+	<!-- navButtonPress=".onNavBack": Calls the controller's onNavBack() method when the back button is clicked-->
 	<Page
 		title="{i18n>detailPageTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+
+	<!-- ObjectHeader: Displays primary details -->
+	<!-- formatOptions: Disables the unit symbol from being shown here-->
 		<ObjectHeader
 			core:require="{
                 Date: 'sap/ui/model/type/Date',
@@ -30,7 +35,8 @@
 			numberUnit="{view>/currency}"
 			intro="{invoice>ShipperName}"
 			title="{invoice>ProductName}" />
-		
+
+		<!-- VBox: A vertical layout container to stack elements-->
 		<VBox class="sapUiLargeMarginBegin sapUiLargeMarginTop">
 			<Text text="Customer Name: {invoice>CustomerName}" />
 			<Text
@@ -44,10 +50,12 @@
 			<Text text="Extended Price: {invoice>ExtendedPrice}" />
 			<Text class="sapUiMediumMarginTop" text="Sales Person: {invoice>Salesperson}" />
 		</VBox>
+
 		<wt:ProductRating
 			id="rating"
 			class="sapUiMediumMarginBegin"
 			change=".onRatingChange" />
+		<!-- wt = custom tag prefix for controls defined in your app-->
 
 	</Page>
 </mvc:View>
